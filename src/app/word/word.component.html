@@ -1,4 +1,5 @@
 <span class="word">
-    <span *ngIf="hidden" ngClass="hidden ? hidden"><span *ngFor="let i of [].constructor(word.length)">|</span></span>
+    <span *ngIf="hidden" ngClass="hidden ? hidden"><span *ngFor="let i of [].constructor(word.length)">\s</span></span>
+
     <span *ngIf="!hidden">{{ word }}</span>
 </span>
