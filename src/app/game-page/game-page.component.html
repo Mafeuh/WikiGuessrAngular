@@ -1,0 +1,14 @@
+<form #myForm = "ngForm"> 
+    Mot: <input 
+            type="text" 
+            name='word' 
+            placeholder="{{ testedWords[testedWords.length - 1]}}"
+            #wordInput> 
+    <button (click)="validate(wordInput)">Valider</button>
+</form>
+<h4>Historique</h4>
+<ul>
+    <li *ngFor="let word of testedWords">{{ word }}</li>
+</ul>
+
+<app-game></app-game>

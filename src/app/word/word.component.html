@@ -1,0 +1,4 @@
+<span class="word" (click)="switchState()">
+    <span *ngIf="hidden" ngClass="hidden ? hidden"><span *ngFor="let i of [].constructor(word.length)">|</span></span>
+    <span *ngIf="!hidden">{{ word }}</span>
+</span>
