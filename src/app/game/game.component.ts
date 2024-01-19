@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ParagraphComponent } from '../paragraph/paragraph.component';
 
 @Component({
   selector: 'app-game',
@@ -9,19 +10,21 @@ export class GameComponent implements OnInit {
   pageTitle!: String;
   paragraphs!: String[];
 
-  sentence:String = "Lorem, ipsum dolor sit amet consectetur";
+  @ViewChildren(ParagraphComponent) paragChildren!: QueryList<ParagraphComponent>
   
   constructor(){ }
 
   ngOnInit(): void {
     this.paragraphs = [
-      "Lorem Ipsum Dolor? Sit, Amet",
-      "adj. apodk, apodkz! ejae",
-      "Troisième phrase pour tester"
+      "Lorem Ipsum Dolor Sit Amet",
+      "Sit Dolor Amet Lorem Ipsum",
+      "Lorem Sit Amet Ipsum Dolor"
     ]
   }
   
-  tryWord():void {
-    
+  tryWord(word:String):void {
+    this.paragChildren.forEach(parag => {
+      parag.tryWord(word);
+    })
   }
 }

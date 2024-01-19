@@ -5,15 +5,13 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './word.component.html',
   styleUrl: './word.component.scss'
 })
-export class WordComponent implements OnInit {
+export class WordComponent {
   hidden: boolean = true;
   @Input('word') word!: String;
   
-  ngOnInit(): void {
-    
-  }
-
-  switchState():void {
-    this.hidden = !this.hidden;  
+  tryWord(word:String):void {
+    if(this.hidden && this.word.toLocaleLowerCase() == word.toLocaleLowerCase()){
+      this.hidden = false;
+    }
   }
 }

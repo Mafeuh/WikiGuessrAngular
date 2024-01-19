@@ -1,13 +1,16 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { GameComponent } from '../game/game.component';
 
 @Component({
   selector: 'app-game-page',
   templateUrl: './game-page.component.html',
   styleUrl: './game-page.component.scss'
 })
-export class GamePageComponent implements AfterViewInit {
+export class GamePageComponent {
   testedWords: String[] = [];
   
+  @ViewChild(GameComponent) game!: GameComponent;
+
   constructor(){ }
   
   validate(input: HTMLInputElement) {
@@ -17,8 +20,7 @@ export class GamePageComponent implements AfterViewInit {
       this.testedWords.push(word);
     }
     input.value = '';
-  }
 
-  ngAfterViewInit(): void {
+    this.game.tryWord(word);
   }
 }
