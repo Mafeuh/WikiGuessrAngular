@@ -14,7 +14,7 @@ export class GamePageComponent {
   constructor(){ }
   
   validate(input: HTMLInputElement) {
-    let word = input.value.toLocaleLowerCase();
+    let word = input.value.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
     if(this.testedWords.indexOf(word) == -1){
       this.testedWords.push(word);

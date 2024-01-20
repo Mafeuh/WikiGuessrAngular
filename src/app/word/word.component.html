@@ -1,5 +1,8 @@
 <span class="word">
-    <span *ngIf="hidden" ngClass="hidden ? hidden"><span *ngFor="let i of [].constructor(word.length)">\s</span></span>
-
-    <span *ngIf="!hidden">{{ word }}</span>
+    <span *ngIf="hidden" ngClass="hidden ? hidden">
+        <span *ngFor="let i of [].constructor(to_int(word.length/2))">&nbsp;&nbsp;</span>
+        <span class="wordsize">{{ word.length }}</span>
+        <span *ngFor="let i of [].constructor(to_int(word.length/2))">&nbsp;&nbsp;</span>
+    </span>
+    <span *ngIf="!hidden" [ngClass]="{ 'justRevealed': justRevealed }">{{ word }}</span>
 </span>

@@ -1,1 +1,8 @@
-<p class="paragraph"><app-word *ngFor="let word of paragraph.split(' ')" [word]="word"></app-word></p>
+<p class="paragraph">
+    <span *ngFor="let word of splitInput(paragraph)">
+        <span class="punctuation" *ngIf="isPunctuation(word)">{{word}}</span>
+        <span>
+            <app-word *ngIf="!isPunctuation(word)" [word]="word"/>
+        </span>
+    </span>
+</p>

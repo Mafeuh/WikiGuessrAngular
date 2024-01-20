@@ -1,3 +1,12 @@
-<h1>Lorem Ipsum</h1>
-
-<app-paragraph *ngFor="let paragraph of paragraphs" [paragraph]="paragraph"></app-paragraph>
+<div class="game">
+    <h1>
+        <span *ngFor="let word of splitInput(pageTitle)">
+            <span *ngIf="isPunctuation(word)">{{ word }}</span>
+            <span *ngIf="!isPunctuation(word)">
+                <app-word  [word]="word"></app-word>
+            </span>
+        </span>
+    </h1>
+    
+    <app-paragraph *ngFor="let paragraph of paragraphs" [paragraph]="paragraph"></app-paragraph>
+</div>
