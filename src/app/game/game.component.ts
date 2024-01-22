@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ParagraphComponent } from '../paragraph/paragraph.component';
 import { WordComponent } from '../word/word.component';
+import { WikiLoader } from '../tools/wiki-loader';
 
 @Component({
   selector: 'app-game',
@@ -10,17 +11,30 @@ import { WordComponent } from '../word/word.component';
 export class GameComponent implements OnInit {
   pageTitle!: string;
   paragraphs!: string[];
+  wikiLoader!: WikiLoader
 
   @ViewChildren(ParagraphComponent) paragChildren!: QueryList<ParagraphComponent>;
   @ViewChildren(WordComponent) titleWords!: QueryList<WordComponent>;
 
-  constructor(){ }
+  constructor() { }
   
   ngOnInit(): void {
-    this.pageTitle = "Étienne Laclotte".normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    this.paragraphs = [
-      "Étienne Laclotte (1728-1812) est un architecte bordelais2. Avec ses frères, Michel et Jean, il forme une société exerçant les professions d’architecte et entrepreneur, qui aura une place dominante dans la deuxième moitié du XVIIIe siècle parmi la corporation des maîtres maçons de Bordeaux3. ".normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
-    ]
+    this.wikiLoader = new WikiLoader();
+    var dataFetch = this.wikiLoader.get_page2();
+
+    var data = { "title": "", "paragraphs": [] }
+    dataFetch.then(response => {
+        // Check if the response status is OK (200-299)
+        if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        return response.json();
+    }).then(response => {
+      console.log(response);
+      this.pageTitle = response.title.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      this.paragraphs = response.paragraphs      
+    });
+
   }
 
   isWon(): boolean {
@@ -31,12 +45,12 @@ export class GameComponent implements OnInit {
     return res;
   }
 
-
   splitInput(sentence: string): string[] {
     return sentence.split(/(\b|\W)/).filter(function(item) {
       return item.length > 0;
     })
   }
+  
   isPunctuation(word: string): boolean {
     // Customize the regular expression based on your definition of punctuation
     const punctuationRegex = /^[ !@#$%^&*(),.?":{}|<>\-']+$/;
