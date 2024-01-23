@@ -11,7 +11,7 @@ export class WordComponent {
   @Input('word') word!: String;
   
   tryWord(word:String):void {
-    if(this.hidden && this.word.toLocaleLowerCase() == word.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")){
+    if(this.hidden && this.word.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") == word.toLocaleLowerCase()){
       this.hidden = false;
       this.justRevealed = true;
     } else {
