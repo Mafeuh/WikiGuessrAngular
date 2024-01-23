@@ -49,6 +49,7 @@ export class GameComponent implements OnInit {
   }
 
   splitInput(sentence: string): string[] {
+    if(sentence == undefined) return [""];
     console.log("--SPLIT");
     console.log(sentence);
     
