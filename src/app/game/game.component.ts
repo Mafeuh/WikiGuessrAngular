@@ -49,7 +49,7 @@ export class GameComponent implements OnInit {
   }
 
   splitInput(sentence: string): string[] {
-    return sentence.split(/(\b|\W)/).filter(function(item) {
+    return sentence.split(/(\p{L}+|\S)/).filter(function(item) {
       return item.length > 0;
     })
   }

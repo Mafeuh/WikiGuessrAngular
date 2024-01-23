@@ -3,7 +3,7 @@
         <span *ngFor="let word of splitInput(pageTitle)">
             <span *ngIf="isPunctuation(word)">{{ word }}</span>
             <span *ngIf="!isPunctuation(word)">
-                <app-word  [word]="word"></app-word>
+                <app-word [word]="word"></app-word>
             </span>
         </span>
     </h1>
