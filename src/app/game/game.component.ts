@@ -29,7 +29,7 @@ export class GameComponent implements OnInit {
         }
         return response.json();
     }).then(response => {
-      this.pageTitle = response.title.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      this.pageTitle = response.title;
       this.paragraphs = response.paragraphs;
       console.log(this.pageTitle);
       console.log(this.paragraphs);
