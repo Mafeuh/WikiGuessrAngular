@@ -22,7 +22,6 @@ export class GameComponent implements OnInit {
     this.wikiLoader = new WikiLoader();
     var dataFetch = this.wikiLoader.get_page();
 
-    var data = { "title": "", "paragraphs": [] }
     dataFetch.then(response => {
         // Check if the response status is OK (200-299)
         if (!response.ok) {
@@ -30,9 +29,11 @@ export class GameComponent implements OnInit {
         }
         return response.json();
     }).then(response => {
-      console.log(response);
       this.pageTitle = response.title.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      this.paragraphs = response.paragraphs      
+      this.paragraphs = response.paragraphs;
+      console.log(this.pageTitle);
+      console.log(this.paragraphs);
+      
     });
 
   }
