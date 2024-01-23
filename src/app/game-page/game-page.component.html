@@ -1,4 +1,4 @@
-<div class="game-page won">
+<div class="game-page" [ngClass]="{'won': isWon()}">
     <form #myForm = "ngForm"> 
         Mot: <input 
         type="text" 
