@@ -31,6 +31,8 @@ export class GameComponent implements OnInit {
     }).then(response => {
       this.pageTitle = response.title;
       this.paragraphs = response.paragraphs;
+      console.log(response);
+      
       console.log(this.pageTitle);
       console.log(this.paragraphs);
       
