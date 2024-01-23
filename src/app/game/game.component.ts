@@ -52,7 +52,6 @@ export class GameComponent implements OnInit {
     var resp = sentence.split(/(\p{L}+|\S)/gu).filter(function(item) {
       return item.length > 0;
     })
-    console.log(resp);
     
     return resp;
   }
