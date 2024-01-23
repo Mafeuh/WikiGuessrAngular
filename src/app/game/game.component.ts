@@ -49,9 +49,16 @@ export class GameComponent implements OnInit {
   }
 
   splitInput(sentence: string): string[] {
-    return sentence.split(/(\p{L}+|\S)/).filter(function(item) {
+    console.log("--SPLIT");
+    console.log(sentence);
+    
+    var resp = sentence.split(/(\p{L}+|\S)/).filter(function(item) {
       return item.length > 0;
     })
+
+    console.log(resp);
+    
+    return resp;
   }
   
   isPunctuation(word: string): boolean {
