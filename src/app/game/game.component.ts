@@ -20,7 +20,7 @@ export class GameComponent implements OnInit {
   
   ngOnInit(): void {
     this.wikiLoader = new WikiLoader();
-    var dataFetch = this.wikiLoader.get_page2();
+    var dataFetch = this.wikiLoader.get_page();
 
     var data = { "title": "", "paragraphs": [] }
     dataFetch.then(response => {
