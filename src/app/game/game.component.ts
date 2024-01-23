@@ -10,7 +10,7 @@ import { WikiLoader } from '../tools/wiki-loader';
 })
 export class GameComponent implements OnInit {
   pageTitle!: string;
-  paragraphs!: string[];
+  paragraphs!: string;
   wikiLoader!: WikiLoader
 
   @ViewChildren(ParagraphComponent) paragChildren!: QueryList<ParagraphComponent>;
