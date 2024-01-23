@@ -17,7 +17,7 @@ export class ParagraphComponent {
   }
 
   splitInput(sentence: string): string[] {
-    return sentence.split(/(\p{L}+|\S)/gu).filter(function(item) {
+    return sentence.split(/[0-9]+|(\p{L}+|\S|)/gu).filter(function(item) {
       return item.length > 0;
     })
   }
