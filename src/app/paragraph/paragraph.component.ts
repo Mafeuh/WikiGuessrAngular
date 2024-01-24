@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { WordComponent } from '../word/word.component';
+import { GlobalMethods } from '../tools/global-methods';
 
 @Component({
   selector: 'app-paragraph',
@@ -16,10 +17,8 @@ export class ParagraphComponent {
     return punctuationRegex.test(word);
   }
 
-  splitInput(sentence: string): string[] {
-    return sentence.split(/(\p{L}+|\S)/gu).filter(function(item) {
-      return item.length > 0;
-    })
+  splitInput(word: string): string[]{
+    return GlobalMethods.splitInput(word);
   }
   
   @ViewChildren(WordComponent) words!: QueryList<WordComponent>;

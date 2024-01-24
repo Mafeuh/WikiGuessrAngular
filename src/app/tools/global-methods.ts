@@ -1,0 +1,8 @@
+export class GlobalMethods {
+    static splitInput(sentence: string): string[] {
+    if(!sentence) return [];
+    return sentence.split(/(\p{L}+|\S)/gu).filter(function(item) {
+        return item.length > 0;
+    })
+    }
+}

@@ -12,10 +12,6 @@ export class GamePageComponent {
   @ViewChild(GameComponent) game!: GameComponent;
 
   constructor(){ }
-
-  isWon(){
-    return this.game.isWon();
-  }
   
   validate(input: HTMLInputElement) {
     let word = input.value.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");

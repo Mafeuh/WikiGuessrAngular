@@ -1,4 +1,8 @@
 <div class="game">
+    <div *ngIf="isGameOver">
+        <h2>Bravo !</h2>
+        <p><a href="{{ pageUrl }}">Lien de la page</a></p>
+    </div>
     <h1>
         <span *ngFor="let word of splitInput(pageTitle)">
             <span *ngIf="isPunctuation(word)">{{ word }}</span>
@@ -7,7 +11,5 @@
             </span>
         </span>
     </h1>
-    <app-paragraph [paragraph]="paragraphs"></app-paragraph>
-
-    <!-- <app-paragraph *ngFor="let paragraph of paragraphs" [paragraph]="paragraph"></app-paragraph> -->
+    <app-paragraph *ngFor="let paragraph of paragraphs" [paragraph]="paragraph"></app-paragraph>
 </div>
