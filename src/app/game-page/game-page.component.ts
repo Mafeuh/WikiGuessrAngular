@@ -7,20 +7,40 @@ import { GameComponent } from '../game/game.component';
   styleUrl: './game-page.component.scss'
 })
 export class GamePageComponent {
-  testedWords: String[] = [];
+  testedWords: TestedWord[] = [];
   
   @ViewChild(GameComponent) game!: GameComponent;
 
   constructor(){ }
   
+  lastGuessedWord(): string {
+    if(this.testedWords.length == 0) return '';
+    return this.testedWords[this.testedWords.length - 1].word;
+  }
+
   validate(input: HTMLInputElement) {
     let word = input.value.toLocaleLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-    if(this.testedWords.indexOf(word) == -1){
-      this.testedWords.push(word);
+    if(!this.wordAlreadyGuessed(word)){
+      this.testedWords.push(new TestedWord(word, 0));
     }
     input.value = '';
 
     this.game.tryWord(word);
   }
+
+  wordAlreadyGuessed(word: string): boolean {
+    var res = false;
+    this.testedWords.forEach(tested => {
+      if(tested.word === word) res = true;
+    });
+    return res;
+  }
+}
+
+class TestedWord {
+  constructor(
+    public word: string,
+    public amount: number
+  ){ }
 }

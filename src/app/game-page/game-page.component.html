@@ -1,15 +1,26 @@
-<div class="game-page won">
+<div class="game-page">
     <form #myForm = "ngForm"> 
         Mot: <input 
         type="text" 
         name='word' 
-        placeholder="{{ testedWords[testedWords.length - 1]}}"
+        placeholder="{{ lastGuessedWord() }}"
         #wordInput> 
         <button (click)="validate(wordInput)">Valider</button>
     </form>
     <app-game></app-game>
     <h4>Historique</h4>
-    <ul>
-        <li *ngFor="let word of testedWords">{{ word }}</li>
-    </ul>
+    <table>
+        <thead>
+            <th>N°</th>
+            <th>Mot</th>
+            <th>Nombre</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let word of testedWords; let index = index">
+                <td>{{ index + 1 }}</td>
+                <td>{{ word.word }}</td>
+                <td>{{ word.amount }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
