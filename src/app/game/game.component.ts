@@ -14,7 +14,8 @@ export class GameComponent implements OnInit {
   paragraphs!: string;
   pageUrl!: string;
 
-  isGameOver: boolean = false;
+  //TODO: Change back to false when finished
+  isGameOver: boolean = true;
 
   wikiLoader!: WikiLoader;
 

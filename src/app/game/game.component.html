@@ -1,4 +1,4 @@
-<div class="game">
+<div class="game" [ngClass]="{finished: isGameOver}">
     <div *ngIf="isGameOver">
         <h2>Bravo !</h2>
         <p><a href="{{ pageUrl }}">Lien de la page</a></p>
